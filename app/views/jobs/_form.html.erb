@@ -49,7 +49,7 @@
   </div>
   <div>
     <%= form.label :telework, style: "display: block" %>
-    <%= form.text_area :telework %>
+    <%= form.select :telework, Job.telework_flgs.keys, {} %>
   </div>
   <div>
     <%= form.label :disability, style: "display: block" %>

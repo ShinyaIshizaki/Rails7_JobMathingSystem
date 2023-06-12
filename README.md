@@ -25,9 +25,9 @@ Things you may want to cover:
 
 ---
 
-環境構築
+# 環境構築
 
-## ubunt22.04の場合
+### ubunt22.04の場合
 
 ```
 

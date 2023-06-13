@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_055634) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_035128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,7 +26,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_055634) do
     t.date "to"
     t.string "place"
     t.string "telework"
-    t.text "disability", default: [], array: true
+    t.boolean "physical"
+    t.boolean "intellectual"
+    t.boolean "psychological"
+    t.boolean "developmental"
   end
 
 end

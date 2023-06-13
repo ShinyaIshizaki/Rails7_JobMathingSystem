@@ -57,11 +57,20 @@
     <%= form.select :telework, Job.telework_flgs.keys, {} %>
   </div>
   <div>
-    <%= form.label :disability, style: "display: block" %>
-    <% Job.disability_flgs.keys.each do |d| %>
-      <%= form.check_box :d, { multiple: true }, d, nil %>
-      <%= form.label d %>
-    <% end %>
+    <%= form.label :physical, style: "display: block" %>
+    <%= form.check_box :physical %>
+  </div>
+  <div>
+    <%= form.label :intellectual, style: "display: block" %>
+    <%= form.check_box :intellectual %>
+  </div>
+  <div>
+    <%= form.label :psychological, style: "display: block" %>
+    <%= form.check_box :psychological %>
+  </div>
+  <div>
+    <%= form.label :developmental, style: "display: block" %>
+    <%= form.check_box :developmental %>
   </div>
 
   <div>

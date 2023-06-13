@@ -1,6 +1,5 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[ show edit update destroy ]
-  before_action :change_disability_to_string, only: [:create, :update]
 
   # GET /jobs or /jobs.json
   def index
@@ -68,11 +67,7 @@ class JobsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def job_params
       params.require(:job).permit(
-        :title, :context, :skill_frontend, :skill_backend, :skill_infra, :from, :to, :place, :telework, disability: []
+        :title, :context, :skill_frontend, :skill_backend, :skill_infra, :from, :to, :place, :telework, :physical, :intellectual, :psychological, :developmental
       )
-    end
-
-    def change_disability_to_string
-      # params[:job][:disability] = params[:job][:disability].join("/")
     end
 end

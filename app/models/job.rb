@@ -17,4 +17,11 @@ class Job < ApplicationRecord
         一部可:1,
         可:2
     }
+
+    enum disability_flg:{
+        身体:0,
+        知的:1,
+        精神:2,
+        発達:3
+    }
 end

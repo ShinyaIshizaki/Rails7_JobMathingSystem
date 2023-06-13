@@ -12,6 +12,11 @@
   <% end %>
 
   <div>
+    <%= form.label :id, style: "display: block" %>
+    <%= form.text_field :id, readonly: true %>
+  </div>
+
+  <div>
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
@@ -53,7 +58,10 @@
   </div>
   <div>
     <%= form.label :disability, style: "display: block" %>
-    <%= form.text_area :disability %>
+    <% Job.disability_flgs.keys.each do |d| %>
+      <%= form.check_box :d, { multiple: true }, d, nil %>
+      <%= form.label d %>
+    <% end %>
   </div>
 
   <div>

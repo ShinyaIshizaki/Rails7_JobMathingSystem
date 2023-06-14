@@ -13,28 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
- html {
-    margin: 0;
-    padding: 0;
- }
-
- header {
-    font-weight: bold;
-    font-size: xx-large;
-    text-align: center;
- }
-
- .job {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: 100px;
-    background-color: lightgoldenrodyellow;
-    border: 1px solid black;
- }
-
- footer {
-    background-color: lightgray;
-    text-align: center;
- }

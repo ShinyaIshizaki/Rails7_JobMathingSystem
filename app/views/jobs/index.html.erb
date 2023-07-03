@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Jobs</h1>
+<h1>Jobs List</h1>
 
 <div id="jobs">
   <% @jobs.each do |job| %>
@@ -8,5 +8,12 @@
     <p>
       <%= link_to "Show this job", job %>
     </p>
+  <% end %>
+  
+  <%# ログインしているときのみ、表示させる %>
+  <% if logged_in? %>
+  <p>
+    <%= link_to "New job", new_job_path %>
+  </P>
   <% end %>
 </div>

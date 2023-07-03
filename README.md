@@ -111,3 +111,126 @@ rails server --binding="XXX.XXX.XXX.XXX"
 http://XXX.XXX.XXX.XXX/jobs
 
 ```
+
+# デプロイ
+
+### XServerVPS
+### OS再インストールの場合
+
+# サーバーパネルで作業
+サーバーをシャットダウンする
+
+OS再インストール
+- OS : Ubuntu 22.04(64bit)
+- アプリケーション
+  - 他のアプリケーションを表示する
+    - プログラミングツール
+      - Ruby on Rails を選択
+- rootパスワード : 入力する
+- SSH Key
+   - キーを作成する
+   - 自動生成
+   - 名前 : 入力する
+
+「確認画面へ進む」を押下
+
+秘密鍵をダウンロードする
+
+「再インストールする」を押下
+
+サーバーを起動する
+
+# ターミナルで作業
+秘密鍵を移動する
+```
+mv /Users/ユーザー名/Downloads/秘密鍵名.pem /Users/ユーザー名/.ssh/
+```
+SSH接続する
+```
+ssh -i /Users/ユーザー名/.ssh/秘密鍵名.pem  root@IPアドレス
+useradd ユーザー名
+cat /etc/passwd
+usermod -G sudo ユーザー名
+cat /etc/group | grep ユーザー名
+su ユーザー名 
+
+```
+
+# FTP転送する
+リモートサイト : /home/rails
+
+
+# rootではないユーザーで作業
+```
+cd /etc/nginx/conf.d/
+cp /etc/nginx/conf.d/demo.conf /etc/nginx/conf.d/ファイル名.conf
+```
+
+```ファイル名.conf
+server {
+        listen 80;
+        server_name IPアドレス;
+        root /home/rails/JobMatchingApp/public;
+
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+
+        location / {
+                try_files $uri $uri/index.html $uri.html @rails;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+        }
+
+        location @rails {
+                proxy_pass IPアドレス;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+        }
+}
+```
+
+```ターミナル
+
+```
+
+エラー回避コマンド集
+```
+秘密鍵の削除
+ssh-keygen -R IPアドレス
+```
+```
+権限変更
+chmod 777 対象ファイル
+```
+```
+秘密鍵の権限変更
+chmod 0600 秘密鍵名
+```
+```
+Nginxアップデート
+```
+sudo apt info nginx
+sudo apt update
+cat /etc/lsb-release
+※focalであることを確認する
+```
+```/etc/apt/sources.list.d/nginx.list
+deb https://nginx.org/packages/ubuntu/ focal nginx 
+deb-src https://nginx.org/packages/ubuntu/ focal nginx
+```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
+sudo apt update
+sudo apt info nginx
+sudo apt install nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+
+worker_connections are not enoughエラー
+worker_connectionsの値を変更する
+```/etc/nginx/nginx.conf
+worker_connections 2048;
+gzip settingsを全て有効化
+```
+sudo systemctl restart nginx

@@ -50,11 +50,11 @@
   </div>
   <div>
     <%= form.label :place, style: "display: block" %>
-    <%= form.select :place, Job.work_areas.keys, {} %>
+    <%= form.text_field :place %>
   </div>
   <div>
     <%= form.label :telework, style: "display: block" %>
-    <%= form.select :telework, Job.telework_flgs.keys, {} %>
+    <%= form.text_field :telework %>
   </div>
   <div>
     <%= form.label :physical, style: "display: block" %>

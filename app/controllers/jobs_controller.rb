@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[ show edit update destroy ]
+  before_action :log_in, only: %i[ edit update destroy ]
+  # rescue_from index with: :exception
 
   # GET /jobs or /jobs.json
   def index

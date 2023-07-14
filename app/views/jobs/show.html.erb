@@ -3,8 +3,12 @@
 <%= render @job %>
 
 <div>
-  <%= link_to "Edit this job", edit_job_path(@job) %> |
+  <% if logged_in? %>
+    <%= link_to "Edit this job", edit_job_path(@job) %>
+     |
+  <% end %>
   <%= link_to "Back to jobs", jobs_path %>
-  
-  <%= button_to "Destroy this job", @job, { method: :delete, data: { turbo_confirm: "Are you sure?" } } %>
+  <% if logged_in? %>
+    <%= button_to "Destroy this job", @job, { method: :delete, data: { turbo_confirm: "Are you sure?" } } %>
+  <% end %>
 </div>
